@@ -15,16 +15,12 @@ exports.config = {
       browser: "chromium",
       url: "http://localhost",
       show: true,
-      chromium: {
-
+    /*  chromium: {
         userDataDir: './user-data-dir', // <-- esto guarda cookies y storage
-    
         args: ['--start-maximized']
-    
       },
-    
       userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
-     
+     */
     },
   },
   include: {
@@ -32,7 +28,7 @@ exports.config = {
   },
   gherkin: {
     features: "./features/*.feature",
-    steps: ["./steps/loginSteps.js","./steps/musicaSteps.js"],
+    steps: ["./steps/loginSteps.js", "./steps/musicaSteps.js","./steps/mloginSteps.js"],
   },
   name: "FrameworkYGL",
 };
