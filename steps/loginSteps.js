@@ -1,9 +1,9 @@
-const LoginPage = require("../pages/poLogin").default;
-
+//const LoginPage = require("../pages/poLogin").default;
+import {poLogin} from '../pages/poLogin.js';
 const { I } = inject();
 
 Given("Estoy en la pagina principal", () => {
- LoginPage.clickLoginButton();
+ poLogin.clickLoginButton();
 });
 
 When("Voy a la pagina de login", () => {
