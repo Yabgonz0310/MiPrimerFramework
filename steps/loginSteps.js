@@ -1,8 +1,9 @@
+const LoginPage = require("../pages/poLogin").default;
+
 const { I } = inject();
 
 Given("Estoy en la pagina principal", () => {
-  I.amOnPage("https://www.inmotionhosting.com/");
-  I.wait(5);
+ LoginPage.clickLoginButton();
 });
 
 When("Voy a la pagina de login", () => {

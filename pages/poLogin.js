@@ -1,9 +1,9 @@
 const { I } = inject();
 
-class poLogin {
-    constructor(){
-        this.fields= {
-            loginButton: '//a[@aria-label="Login"]'
+class LoginPage {
+    constructor() {
+        this.fields = {
+            loginButton: '//a[@aria-label="Login"]',
         }
     }
     clickLoginButton(){
@@ -14,4 +14,5 @@ class poLogin {
 
 
 }
-module.exports = new poLogin ();
+//module.exports = new LoginPage();
+export default new LoginPage ();
