@@ -13,6 +13,7 @@ exports.config = {
   helpers: {
     Playwright: {
       browser: "chromium",
+     // url: "https://rickandmortyapi.com",
       url: "http://localhost",
       show: true,
     /*  chromium: {
