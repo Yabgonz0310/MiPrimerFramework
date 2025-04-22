@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "allure-codeceptjs": "^3.2.1",
+    "allure-commandline": "^2.33.0",
     "codeceptjs": "^3.7.3",
     "playwright": "^1.51.1"
   },
@@ -414,9 +416,9 @@
     "statuses": "^1.5.0",
     "stream-chain": "^2.2.5",
     "stream-json": "^1.9.1",
+    "string_decoder": "^1.1.1",
     "string-width": "^4.2.3",
     "string-width-cjs": "^4.2.3",
-    "string_decoder": "^1.1.1",
     "strip-ansi": "^6.0.1",
     "strip-ansi-cjs": "^6.0.1",
     "strip-final-newline": "^2.0.0",

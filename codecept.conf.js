@@ -31,5 +31,11 @@ exports.config = {
     features: "./features/*.feature",
     steps: ["./steps/loginSteps.js", "./steps/musicaSteps.js","./steps/mloginSteps.js"],
   },
+  plugins: {
+    allure: {
+      enabled: true,
+      require: "allure-codeceptjs",
+    },
+  },
   name: "FrameworkYGL",
 };
