@@ -3,8 +3,9 @@ import LoginPage from '../pages/loginPage.js';
 const { I } = inject();
 
 Given("Estoy en la pagina principal", () => {
-  I.amOnPage("https://www.inmotionhosting.com/");
-  I.wait(10);
+  /*I.amOnPage("https://www.inmotionhosting.com/");
+  I.wait(10);*/
+  LoginPage.iniciopag();
 });
 
 When("Voy a la pagina de login", () => {

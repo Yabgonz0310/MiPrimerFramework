@@ -3,6 +3,7 @@ const { I } = inject();
 class LoginPage {
   constructor() {
     this.fields = {
+      inicio: "https://www.inmotionhosting.com/",
       logButton: '//a[@aria-label="Login"]',
       inputEmail: '//input [@placeholder="email address"]',
       email: "yabingonzaga0310@gmail.com",
@@ -10,6 +11,9 @@ class LoginPage {
       password: "Ejemplo0920#",
       helpButton: '//a[text()="Need help logging in?"]'
     };
+  }
+  iniciopag(){
+    I.amOnPage(this.fields.inicio,5);
   }
   clickLoginButton() {
     I.waitForElement(this.fields.logButton, 5);
