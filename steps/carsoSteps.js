@@ -12,5 +12,5 @@ When("Selecciono el boton ingresar", () => {
 CarsoCursos.loginButton();
 });
 Then("Se visualizan los cursos", () => {
-   CarsoCursos.verInicio();
+   CarsoCursos.verInicioybuscar();
 });

@@ -9,7 +9,12 @@ class CarsoCursos {
       inputPassword: '//input [@placeholder="Escribe tu contraseña"]',
       password: "Lopez031",
       logButton: '//span [text()=" Ingresar "]',
-      //helpButton: '//a[text()="Need help logging in?"]'
+      buscar: '//p [text()="Selecciona el curso al que deseas ingresar:"]',
+      //curso: '//input [@class="mat-mdc-input-element ng-tns-c1205077789-3 ng-pristine ng-valid mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored ng-touched"]',
+      //curso: '//label[@class="mdc-floating-label mat-mdc-floating-label ng-tns-c1205077789-1 ng-star-inserted"]',
+      curso: '//div[@class="mat-mdc-form-field-infix ng-tns-c1205077789-1"]',
+      titlecurso: "Desarrollador"
+      
     };
   }
   iniciolog(){
@@ -25,9 +30,12 @@ class CarsoCursos {
     I.waitForElement(this.fields.logButton, 5);
     I.click(this.fields.logButton);
   }
-  verInicio(){
-    I.wait(10);
-    //I.seeElement(this.fields.helpButton,5);
+  verInicioybuscar(){
+    I.wait(5);
+    I.scrollTo(this.fields.buscar);
+    I.wait(3);
+    I.fillField(this.fields.curso,this.fields.titlecurso);
+    I.wait(8);
 }
 }
 module.exports = new CarsoCursos();
