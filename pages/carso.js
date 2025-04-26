@@ -10,11 +10,11 @@ class CarsoCursos {
       password: "Lopez031",
       logButton: '//span [text()=" Ingresar "]',
       buscar: '//p [text()="Selecciona el curso al que deseas ingresar:"]',
-      //curso: '//input [@class="mat-mdc-input-element ng-tns-c1205077789-3 ng-pristine ng-valid mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored ng-touched"]',
-      //curso: '//label[@class="mdc-floating-label mat-mdc-floating-label ng-tns-c1205077789-1 ng-star-inserted"]',
-      curso: '//div[@class="mat-mdc-form-field-infix ng-tns-c1205077789-1"]',
-      titlecurso: "Desarrollador"
-      
+      element: '(//span[text()="Administración del tiempo"])[2]',
+      //curso: '(//div[text()=" Ir al curso "])[45]',
+      //titlecurso: "Desarrollador"
+      //selectcurso:'(//mat-icon[@class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"])[46]'
+          
     };
   }
   iniciolog(){
@@ -34,7 +34,9 @@ class CarsoCursos {
     I.wait(5);
     I.scrollTo(this.fields.buscar);
     I.wait(3);
-    I.fillField(this.fields.curso,this.fields.titlecurso);
+    I.seeElement(this.fields.element);
+    //I.click(this.fields.selectcurso); 
+    //Quise seleccionar un curso, una vez que se desplaza el scroll hasta cierto punto, pero al ejecutar el feature, me dice que no se encontro el XPATH
     I.wait(8);
 }
 }
