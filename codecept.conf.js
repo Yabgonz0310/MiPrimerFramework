@@ -29,7 +29,7 @@ exports.config = {
   },
   gherkin: {
     features: "./features/*.feature",
-    steps: ["./steps/loginSteps.js", "./steps/musicaSteps.js","./steps/mloginSteps.js","./steps/carsoSteps.js"],
+    steps: ["./steps/loginSteps.js", "./steps/musicaSteps.js","./steps/mloginSteps.js","./steps/carsoSteps.js","./steps/walmartSteps.js","./steps/cineSteps.js","./steps/attSteps.js"],
   },
   plugins: {
     allure: {

@@ -11,11 +11,9 @@ class CarsoCursos {
       logButton: '//span [text()=" Ingresar "]',
       buscar: '//p [text()="Selecciona el curso al que deseas ingresar:"]',
       element: '(//span[text()="Administración del tiempo"])[2]',
-      //curso: '(//div[text()=" Ir al curso "])[45]',
-      //titlecurso: "Desarrollador"
-      //selectcurso:'(//mat-icon[@class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"])[46]'
-          
-    };
+      //selectcurso:'//input[contains(@class, "mat-mdc-input-element")]',
+      //titlecurso: '//input[contains(@class, "mat-mdc-input-element")],"Desarrollador"'
+      };
   }
   iniciolog(){
     I.amOnPage(this.fields.inicio,5);
@@ -35,9 +33,12 @@ class CarsoCursos {
     I.scrollTo(this.fields.buscar);
     I.wait(3);
     I.seeElement(this.fields.element);
-    //I.click(this.fields.selectcurso); 
-    //Quise seleccionar un curso, una vez que se desplaza el scroll hasta cierto punto, pero al ejecutar el feature, me dice que no se encontro el XPATH
+    //I.click({ xpath: this.fields.selectcurso},texto); 
     I.wait(8);
+    //I.fillField(this.fields.titlecurso);
+    
+    //Quise seleccionar un curso, una vez que se desplaza el scroll hasta cierto punto, pero al ejecutar el feature, me dice que no se encontro el XPATH
+    
 }
 }
 module.exports = new CarsoCursos();
