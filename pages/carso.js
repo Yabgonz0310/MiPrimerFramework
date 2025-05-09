@@ -4,11 +4,11 @@ class CarsoCursos {
   constructor() {
     this.fields = {
       inicio: "https://capacitatecarso.com/login",
-      inputEmail: '//input [@placeholder="Escribe tu email"]',
+      inputEmail: '//input[@placeholder="Escribe tu email"]',
       email: "gonzagay@globalhitss.com",
-      inputPassword: '//input [@placeholder="Escribe tu contraseña"]',
+      inputPassword: '//input[@placeholder="Escribe tu contraseña"]',
       password: "Lopez031",
-      logButton: '//span [text()=" Ingresar "]',
+      logButton: '//span[text()=" Ingresar "]',
       buscar: '//p [text()="Selecciona el curso al que deseas ingresar:"]',
       element: '(//span[text()="Administración del tiempo"])[2]',
       //selectcurso:'//input[contains(@class, "mat-mdc-input-element")]',

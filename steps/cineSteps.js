@@ -1,19 +1,19 @@
-import cineFan from '../pages/cine.js';
+import CineFan from '../pages/cine.js';
 const {I} =inject();
 
 
-Given("Estoy en la pagina de inicio", () => {
-    cineFan.mainpage();
+Given("Estoy en la pagina general", () => {
+    CineFan.mainpage();
 });
 
 When("Selecciono Registrarse", () => {
-    cineFan.ctanueva();
+    CineFan.ctanueva();
 });
 
 When("Capturo datos para la cuenta", () => {
-   cineFan.datosregistro();
+   CineFan.datosregistro();
 });
 
 Then("Se muestra la pantalla con los campos capturados", () => {
-   cineFan.continuar();
+   CineFan.continuar();
 });

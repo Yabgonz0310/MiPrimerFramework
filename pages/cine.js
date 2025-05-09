@@ -1,6 +1,6 @@
 const { I } = inject();
 
-class cineFan {
+class CineFan {
     constructor() {
         this.fields ={
             main: "https://www.filmaffinity.com/mx/main.html",
@@ -14,24 +14,26 @@ class cineFan {
             //continue:'//input[@value="registrarse"]',
             };
     }
-    mainpage(){
-        I.amOnPage(this.fields.main,{ waitUntil: 'domcontentloaded',timeout: 60000 });
+     async mainpage(){
+       await I.amOnPage(this.fields.main);
         //I.wait(20);
+        //{ waitUntil: 'domcontentloaded',timeout: 60000 }
     }
-    ctanueva(){
-        I.click(this.fields.register,10);
+     async ctanueva(){
+       await I.waitForElement(this.fields.register,10); 
+       await I.click(this.fields.register);
         
     }
-    datosregistro(){
-        I.wait(4);
-        I.fillField(this.fields.email,this.fields.mail);
-        I.fillField(this.fields.user,this.fields.username);
-        I.fillField(this.fields.inputpasswd,this.fields.psswd);
-        I.wait(2);
+     async datosregistro(){
+       await I.wait(4);
+       await I.fillField(this.fields.email,this.fields.mail);
+       await I.fillField(this.fields.user,this.fields.username);
+       await I.fillField(this.fields.inputpasswd,this.fields.psswd);
+       await I.wait(2);
        
    }
-   continuar(){
-    I.wait(8);
+     async continuar(){
+       await I.wait(8);
    }
 }
-module.exports = new cineFan();
+module.exports = new CineFan();
