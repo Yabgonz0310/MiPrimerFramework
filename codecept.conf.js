@@ -15,7 +15,13 @@ exports.config = {
       browser: "chromium",
      // url: "https://rickandmortyapi.com",
       url: "http://localhost",
+      basicAuth:
+        {
+          username: 'CP1GOLOYMX',
+          password: 'A25FJT70LK'
+        },
       show: true,
+ 
     /*  chromium: {
         userDataDir: './user-data-dir', // <-- esto guarda cookies y storage
         args: ['--start-maximized']
@@ -30,14 +36,10 @@ exports.config = {
   gherkin: {
     features: "./features/*.feature",
     steps: ["./steps/loginSteps.js", "./steps/musicaSteps.js","./steps/mloginSteps.js","./steps/carsoSteps.js","./steps/walmartSteps.js","./steps/cineSteps.js",
-      "./steps/attSteps.js","./steps/aseoSteps.js"],
+      "./steps/attSteps.js","./steps/aseoSteps.js","./steps/exresSteps.js"],
       //,"./steps/mitelSteps.js"
   },
-  basicAuth:
-        {
-          username: 'CP1GOLOYMX',
-          password: 'A25FJT70LK'
-        },
+
   plugins: {
     allure: {
       enabled: true,
