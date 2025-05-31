@@ -33,6 +33,11 @@ exports.config = {
       "./steps/attSteps.js","./steps/aseoSteps.js"],
       //,"./steps/mitelSteps.js"
   },
+  basicAuth:
+        {
+          username: 'CP1GOLOYMX',
+          password: 'A25FJT70LK'
+        },
   plugins: {
     allure: {
       enabled: true,
