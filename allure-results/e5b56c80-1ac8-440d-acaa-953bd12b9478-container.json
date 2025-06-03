@@ -1,0 +1,1 @@
+{"uuid":"e5b56c80-1ac8-440d-acaa-953bd12b9478","name":"\"before all\" hook: codeceptjs.beforeSuite","children":["08a716eb-238a-40d7-92fc-df836267165e"],"befores":[{"status":"passed","statusDetails":{},"stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1748915560076,"name":"\"before all\" hook: codeceptjs.beforeSuite","stop":1748915561461}],"afters":[]}

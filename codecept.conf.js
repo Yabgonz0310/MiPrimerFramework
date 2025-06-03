@@ -13,6 +13,7 @@ exports.config = {
   helpers: {
     Playwright: {
       browser: "chromium",
+      windowSize: '1920x1080',
      // url: "https://rickandmortyapi.com",
       url: "http://localhost",
       basicAuth:

@@ -32,10 +32,13 @@ class AltaRes {
       apaterno: "FLORES",
       inputam: '//td[@id="tdtextamaterno"]//input[@type="text"]',
       amaterno: "CCP",
-      inputrfc: '//td//input[@id="rfc"]',
-      rfc: "XAXX010101000",
+      btnfc: '//input[@name="btnRFC"]',
+      sinrfc: '//img[@title="Clic para rfc genérico"]',
+      btnaceptrfc: '//input[@class="btncontinuar"]',
       comboident: '(//a[@class="ui-widget ui-state-default ui-button-icon-only custom-combobox-toggle ui-corner-right"])[7]',
-      comboine: '//select[@id="typeId"]//option[@value="INE"]',
+      msjcliente: '//div[@class="dialog-popup-express-head"]',
+      comboine: '//html//body//main//div[3]//div//span//a//span[1]',
+      inputine: '//div[@id="data1_1"]//input[@id="numId"]',
       ine: 6745124689125,
       validarine: '//button[@id="btnValidate"]',
       cerrarince: "https://listanominal.ine.mx/scpln/",
@@ -64,20 +67,21 @@ class AltaRes {
 
   datoscliente() {
     within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
-      I.click(this.fields.inputcel);
+      I.click(this.fields.inputcel)
+      I.wait(3)
     });
-    I.click(this.fields.infocontact);
-    I.wait(4);
-/*
+    I.click(this.fields.infocontact)
+    I.wait(4)
+
     within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
-      I.fillField(this.fields.inputcel, this.fields.celular);
-      I.fillField(this.fields.confirmarcel, this.fields.celular);
-      I.fillField(this.fields.inputteladicional, this.fields.teladic);
-      I.fillField(this.fields.inputcorreo, this.fields.alias);
-      I.fillField(this.fields.inputdominio, this.fields.domain);
-      I.fillField(this.fields.confcorreo, this.fields.alias);
-      I.fillField(this.fields.confdominio, this.fields.domain);
-      I.wait(3);
+      I.fillField(this.fields.inputcel, this.fields.celular)
+      I.fillField(this.fields.confirmarcel, this.fields.celular)
+      I.fillField(this.fields.inputteladicional, this.fields.teladic)
+      I.fillField(this.fields.inputcorreo, this.fields.alias)
+      I.fillField(this.fields.inputdominio, this.fields.domain)
+      I.fillField(this.fields.confcorreo, this.fields.alias)
+      I.fillField(this.fields.confdominio, this.fields.domain)
+      I.wait(3)
       I.waitForElement("#comboRegimen", 5);
       
       I.executeScript(() => {
@@ -85,63 +89,91 @@ class AltaRes {
         select.value = "RESIDENCIAL";
         select.dispatchEvent(new Event("change"));
       });
+      I.wait(3)
 
+      I.switchTo('//iframe[@name="detalleOficinas"]')
+      I.waitForElement(this.fields.inputoficina)
+      I.fillField(this.fields.inputoficina, this.fields.oficina)
+      I.switchTo()
+      I.wait(3)
+      });
+  
+      //Llenar campos de nombre, Ap, Am y validar datos contacto
+      within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.fillField(this.fields.inputnombre, this.fields.nombre,2)
+      I.fillField(this.fields.inputap, this.fields.apaterno,2)
+      I.fillField(this.fields.inputam, this.fields.amaterno,4)
+      I.wait(5)
+      I.click(this.fields.valdatoscontact)
+      I.wait(4)
+      I.click(this.fields.btnfc)
+      I.wait(4)
+            
+      //Pendiente scroll para mostrar ventana de RFC
+      I.switchTo('//iframe[@id="dialog-body"]')
+      I.wait(3)
+      I.waitForElement(this.fields.sinrfc)
+      I.wait(7)
+      I.click(this.fields.sinrfc)
+      I.wait(3)
+      I.click(this.fields.btnaceptrfc)
+      I.switchTo()
+      I.wait(4)
+});
+      //pause()
+      //Tipo de Identificación
+      within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.click(this.fields.comboident)
+      I.wait(4)
+});
+      //Mostrar ventana del tipo de identificación
+      I.waitForElement(this.fields.msjcliente)
+      I.wait(3)
+      within({ frame: '(//body[@onunload]//iframe)[1]' }, () => {
+      I.click(this.fields.comboine)
+      I.wait(6)
+//Selecciona alguna opción del combo Tipo de identificación
+    /*
+    I.executeScript(() => {
+  const select = document.getElementById("cboxtypeId");
+  if (select) {
+    select.value = "INE";
+    ['input', 'change', 'blur'].forEach(evtType => {
+      const evt = new Event(evtType, { bubbles: true });
+      select.dispatchEvent(evt);
     });
-*/
-/*
-within({ frame: '//iframe[@name="kioskoA0"]' }, async () => {
-	const page = await playwright.page;
-	const frame1 = await page.frame({ name: 'kioskoA0' });
-	
-      I.fillField(this.fields.inputcel, this.fields.celular);
-      I.fillField(this.fields.confirmarcel, this.fields.celular);
-      I.fillField(this.fields.inputteladicional, this.fields.teladic);
-      I.fillField(this.fields.inputcorreo, this.fields.alias);
-      I.fillField(this.fields.inputdominio, this.fields.domain);
-      I.fillField(this.fields.confcorreo, this.fields.alias);
-      I.fillField(this.fields.confdominio, this.fields.domain);
-      I.wait(3);
-      I.waitForElement("#comboRegimen", 5);
-	  
-	  I.executeScript(() => {
-        const select = document.getElementById("comboRegimen");
-        select.value = "RESIDENCIAL";
+  }
+});*/
+      I.executeScript(() => {
+        const select = document.getElementById("cboxtypeId");
+        select.value = "INE";
         select.dispatchEvent(new Event("change"));
       });
-	  
-	 const iframeHandle = await frame1.waitForSelector('//iframe[@name="detalleOficinas"]');
-     const frame2 = await iframeHandle.contentFrame();
-	 await frame2.fill('//td//input[@id="CVE"]', 'WFC');
-     I.wait(5);
-    });
-*/
-const { inputcel, celular, confirmarcel, inputteladicional, inputcorreo, dominio, confcorreo, confdominio, teladic, alias, domain } = this.fields;
-within({ frame: '//iframe[@name="kioskoA0"]' }, async () => {
-	const page = await playwright.page;
-	const frame1 = await page.frame({ name: 'kioskoA0' });
 
-	I.fillField(inputcel, celular);
-	I.fillField(confirmarcel, celular);
-	I.fillField(inputteladicional, teladic);
-	I.fillField(inputcorreo, alias);
-	I.fillField(inputdominio, domain);
-	I.fillField(confcorreo, alias);
-	I.fillField(confdominio, domain);
-	I.wait(3);
-	I.waitForElement("#comboRegimen", 5);
-
-	I.executeScript(() => {
-		const select = document.getElementById("comboRegimen");
-		select.value = "RESIDENCIAL";
-		select.dispatchEvent(new Event("change"));
-	});
-
-	const iframeHandle = await frame1.waitForSelector('//iframe[@name="detalleOficinas"]');
-	const frame2 = await iframeHandle.contentFrame();
-	await frame2.fill('input#CVE', 'WFC');
-	I.wait(5);
+      I.wait(3)
+//Desactiva la clase que inhabilita el botón de validar
+I.executeScript(() => {
+  const btn = document.getElementById("btnValidate");
+  if (btn) {
+    btn.classList.remove('btn-disabled-express'); // Elimina la clase que lo desactiva
+    btn.disabled = false; // Si estuviera deshabilitado por atributo
+  }
 });
+      I.wait(5)
+      I.fillField(this.fields.inputine, this.fields.ine,3)
+      I.click(this.fields.validarine)
+      I.wait(7)
+      I.closeOtherTabs() //https://listanominal.ine.mx/scpln/
+      I.wait(6)
+      I.click(this.fields.buttonacept)
+      I.wait(3)
 
-    }
+      })
+     
+
+     
+        
+  }
+  
 }
 module.exports = new AltaRes();
