@@ -10,4 +10,6 @@ When("Selecciono Alta sin Portabilidad y capturo los datos", () => {
     AltaRes.tipoalta();
     AltaRes.servicio();
     AltaRes.datoscliente();
+    AltaRes.oferta();
+    AltaRes.facturacion();
 });

@@ -49,7 +49,7 @@ class AltaRes {
       cerrarince: "https://listanominal.ine.mx/scpln/",
       buttonacept: '//button[@id="btnAccept"]',
       inputaddress: '//input[@placeholder="Ingrese dirección..."]',
-      direccion: "RIVERA 141, AMPLIACION  LOS ALPES",
+      direccion: "RIBERA 141, AMPLIACION  LOS ALPES",
       btnsearch: '//input[@class="sb-search-submit"]',
       confmap: '//a[@id="idValCober"]',
       //Complemento domicilio
@@ -61,7 +61,7 @@ class AltaRes {
       tipocalle: '//input[@id="cboxcombotipocalle"]',
       tpcalle: "CALLE",
       inputcalle: '//input[@id="idCalle"]',
-      calle: "RIVERA",
+      calle: "RIBERA",
       numcalle: '//input[@id="idNumeroExterior"]',
       numbercalle: 141,
       inputcalif: '//input[@id="idCalificador"]',
@@ -87,6 +87,49 @@ class AltaRes {
       //GI
       btngi: '//td[@id="tdMsjGI"]',
       btncontinuar: '[name="Continuar"]',
+      //Paquetes
+      contenedorpqts: 'id="contenedorOferta"',
+      servpqt: '[id="chkServPqte"]', //DoblePlay
+      servnaked: '[id="chkServNaked"]', //Naked
+      servlin: '[id="chkServLinea"]', //Solo voz
+      pqt1: '(//button[@id="botonContratar"])[1]', //PQI53 15 MBS
+      pqt2: '(//button[@id="botonContratar"])[2]', //INF19 80 MBS
+      pqt3: '(//button[@id="botonContratar"])[3]', //PQI42 100 MBS
+      pqt4: '(//button[@id="botonContratar"])[4]', //PQI43 150 MBS
+      btnsig: '//span[text()="Siguiente"]',
+      btnant: '//span[text()="Anterior"]',
+      pqt5: '(//button[@id="botonContratar"])[5]', //PQI32 250 MBS
+      pqt6: '(//button[@id="botonContratar"])[6]', //PQI64 350 MBS
+      pqt7: '(//button[@id="botonContratar"])[7]', //PQI25 750 MBS
+      pqt8: '(//button[@id="botonContratar"])[8]', // PQI70 UNKNOWN MBS
+      pqt9: '(//button[@id="botonContratar"])[9]', //PQI62 1000 MBS - 1GB
+      btns: '[id="divBotones"]',
+      btnoffer: '//input[@id="Corrida"]',
+
+      //Oferta comercial: se muestra ventana flotante con la velocidad del paquete seleccionado
+      windowmolecula: '//iframe[@id="idIfrmMolecula"]',
+      //GI Pago inicial y pago único
+      rdbtnGI: '[id="radioGastosD"]', //radio btn GI
+      comboGI: '(//span[@class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"])[4]',
+      btndomiciliacion: '[id="chkDomiciliacion"]', //Desactivar check domiciliación
+
+      //Campos Domiciliación
+      apdom: '//body[@onload="cargaPantalla();"]//input[@id="apaterno"]',
+      amdom: '//body[@onload="cargaPantalla();"]//input[@id="amaterno"]',
+      nombredom: '//body[@onload="cargaPantalla();"]//input[@id="nombre"]',
+      celdom: '//body[@onload="cargaPantalla();"]//input[@id="celular"]',
+      maildom: '//body[@onload="cargaPantalla();"]//input[@id="correo"]',
+      mail: "yabingonzaga0310@gmail.com",
+      aceptdom: '//body[@onload="cargaPantalla();"]//button[@id="btnAceptar"]',
+      continuarpqt: '[id="Continuar"]', //Continua a la pantalla de facturación
+
+      //Facturación
+      cpFact:'//td//input[@id="cpFact"]',
+      btnContratar: '[id="btninfoydom"]',
+
+
+
+
 
 
     };
@@ -263,10 +306,76 @@ class AltaRes {
       I.wait(2)
       I.click(this.fields.btncontrata)
     });
-      I.wait(10)
+      I.wait(15)
       I.click(this.fields.btncontinuar)
-      I.wait(30)
+      I.wait(20)
   }
+
+  //Oferta comercial
+oferta(){
+  //I.wait(5)
+  
+  within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.switchTo('[id="ofertaPlanes"]');
+      I.click(this.fields.servpqt)
+      I.click(this.fields.pqt2)
+      I.wait(5)
+
+      I.executeScript(() => {
+        document.querySelector('[id="selProdReq"]').scrollIntoView();
+      });
+      I.switchTo()
+    });
+    //pause()
+  within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.wait(3)
+      I.click(this.fields.btnoffer)
+      I.wait(5)
+      I.closeOtherTabs(); //Oferta comercial
+      I.wait(2)
+      I.click(this.fields.rdbtnGI)
+      I.wait(1)
+      //I.click(this.fields.btndomiciliacion)
+      //I.wait(2)
+      I.click(this.fields.continuarpqt)
+      //I.wait(35)
+    });
+  within({ frame: '[id="frameD"]' }, () => {
+    I.wait(3)
+    I.fillField(this.fields.apdom, this.fields.apaterno)
+    I.wait(1)
+    I.fillField(this.fields.amdom, this.fields.amaterno)
+    I.wait(1)
+    I.fillField(this.fields.nombredom, this.fields.nombre)
+    I.wait(1)
+    I.fillField(this.fields.celdom, this.fields.celular)
+    I.wait(1)
+    I.fillField(this.fields.maildom, this.fields.mail)
+    I.wait(1)
+    I.click(this.fields.aceptdom)
+    I.wait(15)
+  });
+  
+}
+
+facturacion(){
+  pause()
+  I.wait(3)
+within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+  I.switchTo('[id="catEstado"]')
+  I.wait(3)
+  I.fillField(this.fields.cpFact, this.fields.cp)
+  I.wait(2)
+  I.switchTo()
+  });/*
+within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+  I.wait(2)
+  I.click(this.fields.btnContratar)
+  I.wait(20)
+  I.wait(20)
+  });*/
+
+}
 
 }
 module.exports = new AltaRes();
