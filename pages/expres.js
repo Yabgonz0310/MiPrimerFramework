@@ -1,6 +1,18 @@
 const { locator } = require("codeceptjs");
 
+
 const { I, playwright } = inject();
+const osServicio = require('../pages/osServicio.js');
+module.exports = function () {
+  return actor({
+
+    async guardarTextoDesdeIframe() {
+      await osServicio.generaos(I);
+    }
+
+  });
+};
+
 
 class AltaRes {
   constructor() {
@@ -17,12 +29,12 @@ class AltaRes {
       infocontact:
         '//div[@class="dialog-popup-express-footer"]//button[@class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
       inputcel: '//div[@id="divCelular"]//input[@id="celular"]',
-      celular: 5570510573,
+      celular: 5570510577,
       confirmarcel: '//input[@id="celularConfirm"]',
       inputteladicional: '//td[@id="tdContacto"]//input[@id="telcontacto"]',
       teladic: 7122341281,
       inputcorreo: '(//input[@class="cajaTexto"])[6]',
-      alias: "luiz392",
+      alias: "luiz396",
       inputdominio: '//input[@name="comboDominio"]',
       domain: "gmail.com",
       confcorreo: '(//input[@class="cajaTexto"])[7]',
@@ -31,9 +43,9 @@ class AltaRes {
       inputoficina: '//input[@id="CVE"]',
       oficina: "WFC",
       inputnombre: '//td[@id="tdtextnombre"]//input[@type="text"]',
-      nombre: "SOFIA",
+      nombre: "FRIDA SOFIA",
       inputap: '//td[@id="tdtextapaterno"]//input[@type="text"]',
-      apaterno: "FLORES",
+      apaterno: "FAUSTO",
       inputam: '//td[@id="tdtextamaterno"]//input[@type="text"]',
       amaterno: "CCP",
       btnfc: '//input[@name="btnRFC"]',
@@ -48,37 +60,39 @@ class AltaRes {
       validarine: '//button[@id="btnValidate"]',
       cerrarince: "https://listanominal.ine.mx/scpln/",
       buttonacept: '//button[@id="btnAccept"]',
+      //Dirección
       inputaddress: '//input[@placeholder="Ingrese dirección..."]',
-      direccion: "RIBERA 141, AMPLIACION  LOS ALPES",
+      direccion: "RIBERA 20, LOS ALPES",
       btnsearch: '//input[@class="sb-search-submit"]',
       confmap: '//a[@id="idValCober"]',
       //Complemento domicilio
       inputcol: '//input[@id="cboxColonia"]',
-      col: "AMPLIACION  LOS ALPES",
+      col: "AMPLIACION  LOS ALPES", //No se ocupa de momento
       inputcp: '//input[@id="cboxCodigoPostal"]',
-      cp: "01710",
-      combocalle: '(//span[@class="ui-button-icon-primary ui-icon icon-triangle-express"])[6]',
+      cp: "01710", // Si el CP inicia con 0, se deja con comillas dobles, en caso contrario no se ocupan
+      combocalle:
+        '(//span[@class="ui-button-icon-primary ui-icon icon-triangle-express"])[6]',
       tipocalle: '//input[@id="cboxcombotipocalle"]',
       tpcalle: "CALLE",
       inputcalle: '//input[@id="idCalle"]',
       calle: "RIBERA",
       numcalle: '//input[@id="idNumeroExterior"]',
-      numbercalle: 141,
+      numbercalle: 20,
       inputcalif: '//input[@id="idCalificador"]',
-      calif: ' ',
+      calif: " ",
       sbnumero: '//input[@id="idsubnumero"]',
-      subnumber: ' ',
+      subnumber: " ",
       inputmanzana: '//input[@id="idManzana"]',
-      manzana: ' ',
+      manzana: " ",
       inputlote: '//input[@id="idLote"]',
-      lote: ' ',
+      lote: " ",
       inputedif: '//input[@id="idEdificio"]',
       inputdept: '//input[@id="idDepartamento"]',
       dep: " ",
       inpute1: '//input[@id="idEntreCalle1"]',
-      e1: "EMBOCADURA",
+      e1: "CALZ DE LAS AGUILAS",
       inpute2: '//input[@id="idEntreCalle2"]',
-      e2: "PARQUE ECOLOGICO AGUILAS",
+      e2: "M GUTIERREZ ZAMORA",
       confdom: '//a[@id="idBtnConsultaDom"]',
       //Confirmar Dom instalación
       dominst: '//div[@id="dialog-Mapa"]',
@@ -110,7 +124,8 @@ class AltaRes {
       windowmolecula: '//iframe[@id="idIfrmMolecula"]',
       //GI Pago inicial y pago único
       rdbtnGI: '[id="radioGastosD"]', //radio btn GI
-      comboGI: '(//span[@class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"])[4]',
+      comboGI:
+        '(//span[@class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"])[4]',
       btndomiciliacion: '[id="chkDomiciliacion"]', //Desactivar check domiciliación
 
       //Campos Domiciliación
@@ -124,14 +139,60 @@ class AltaRes {
       continuarpqt: '[id="Continuar"]', //Continua a la pantalla de facturación
 
       //Facturación
-      cpFact:'//td//input[@id="cpFact"]',
+      cpFact: '//td//input[@id="cpFact"]',
       btnContratar: '[id="btninfoydom"]',
 
+      //Catálogo Equipos de cobertura
+      btnencuesta:
+        '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
+      //PUV EQUIPOS MESH
+      btneqcob: '[id="btEncuesta"]',
+      //PUV Encuesta Cobertura
+      btnch: '//label//input[@value="1"]',
+      btnmed: '//label//input[@value="2"]',
+      btngde: '//label//input[@value="3"]',
+      btnxl: '//label//input[@value="4"]',
+      btnregresar: '//tr[@id="btnEncuestaS"]//input[@value="Regresar"]',
+      btnContEncuesta: '//tr[@id="btnEncuestaS"]//input[@value="Continuar"]', // Se reutiliza en la pregunta 2
+      //Pregunta 2
+      btnsi: '//tr[@id="btnEncuesta"]//input[@value="1"]',
+      btnno: '//tr[@id="btnEncuesta"]//input[@value="2"]',
+      Btnfinencuesta: '//div[@id="divPregunta"]//button[@id="btnOK"]',
 
-
-
-
-
+      //PUV MESH debes entrar al KIOSKO/ifr_ContratPuv / y : '//iframe[@id="fmCat"]' para seleccionar productos de esta pantalla
+      btnterminar: '[id="btnTerminar"]',
+      btnagregar:
+        '(//div[@class="ui-dialog-buttonset"]//span[@class="ui-button-text"])[1]', //¿Desea Agregar Algún Aparato Telefónico A La Orden? - Si
+      btnnoagregar:
+        '(//div[@class="ui-dialog-buttonset"]//span[@class="ui-button-text"])[2]', //No desea productos
+      //Motivos
+      mot1: '(//td//input[@name="motivo"])[1]', // Precio elevado
+      mot2: '(//td//input[@name="motivo"])[2]', // Presupuesto
+      mot3: '(//td//input[@name="motivo"])[3]', //YA CUENTA CON UN SERVICIO/PRODUCTO DE LA COMPETENCIA
+      mot4: '(//td//input[@name="motivo"])[4]', //YA CUENTA CON EL SERVICIO/PRODUCTO TELMEX
+      mot5: '(//td//input[@name="motivo"])[5]', //NO ESTÁ INTERESADO EN LA OFERTA
+      mot6: '(//td//input[@name="motivo"])[6]', //CLIENTE REQUIERE TIEMPO/CONSULTA
+      mot7: '(//td//input[@name="motivo"])[7]', //CLIENTE CON QUEJAS
+      mot8: '(//td//input[@name="motivo"])[8]', //ESTÁ SATISFECHO CON SU PRODUCTO/SERVICIO ACTUAL
+      mot9: '(//td//input[@name="motivo"])[9]', //EL CLIENTE NO CUMPLE CONDICIONES
+      btncancelmov: '[id="btnCancelar"]',
+      btnContmov: '//button[text()="Continuar"]',
+      //Catálogo teléfonos
+      btntelcerrar:
+        '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-border btn-md "]', //Cerrar pregunta
+      btntelacept:
+        '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]', //Abrir PUV Tels
+      //Catálogo Tecnología
+      btnteccerrar:
+        '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-border btn-md "]', //Cerrar pregunta
+      btntecacept:
+        '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]', //Abrir PUV Tecnología
+      //Adicionales
+      btnadicsalir: '[id="btnSalir"]',
+      //Msj GI Pago inicial
+      giPi: '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
+      //GeneraOS
+      folioOS:'[id="folSolKio"]',
     };
   }
 
@@ -272,20 +333,20 @@ class AltaRes {
       });
       //ingresar al 2do frame, donde se encuentran los campos
       I.switchTo('//iframe[@name="frameDos"]');
-      I.wait(3)
-      I.click(this.fields.combocalle)
-      I.wait(1)
-      I.fillField(this.fields.tipocalle, this.fields.tpcalle)
-      I.pressKey('Enter');
-      I.fillField(this.fields.inputcalle, this.fields.calle)
-      I.fillField(this.fields.inpute1, this.fields.e1)
-      I.fillField(this.fields.inpute2, this.fields.e2)
-      I.wait(1)
-      I.click(this.fields.confdom)
-      I.wait(3)
+      //I.wait(3);
+      //I.click(this.fields.combocalle);
+      I.wait(1);
+      I.fillField(this.fields.tipocalle, this.fields.tpcalle);
+      I.pressKey("Enter");
+      I.fillField(this.fields.inputcalle, this.fields.calle);
+      I.fillField(this.fields.inpute1, this.fields.e1);
+      I.fillField(this.fields.inpute2, this.fields.e2);
+      I.wait(1);
+      I.click(this.fields.confdom);
+      I.wait(3);
       I.switchTo();
     });
-//pause()
+    //pause()
     //Ingresar al frame uno a tráves del KioskoA0 para la pregunta El Domicilio que ha seleccionado en el mapa es el Domicilio donde se realizará la instalación?
     within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
       I.switchTo('//iframe[@id="fr_domicilio"]');
@@ -295,87 +356,149 @@ class AltaRes {
       });
 
       I.switchTo('//iframe[@name="frameUno"]');
-      //I.waitForElement(this.fields.dominst)
-      I.wait(1)
-      I.click(this.fields.domok)
-      I.wait(10)
+      I.wait(1);
+      I.click(this.fields.domok);
+      I.wait(10);
       I.switchTo();
     });
-
+    //Clic a Contratar
     within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
-      I.wait(2)
-      I.click(this.fields.btncontrata)
+      I.wait(2);
+      I.click(this.fields.btncontrata);
     });
-      I.wait(15)
-      I.click(this.fields.btncontinuar)
-      I.wait(20)
+    I.wait(10);
+    I.click(this.fields.btncontinuar);
+    I.wait(20);
   }
 
   //Oferta comercial
-oferta(){
-  //I.wait(5)
-  
-  within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+  oferta() {
+    I.wait(10);
+    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
       I.switchTo('[id="ofertaPlanes"]');
-      I.click(this.fields.servpqt)
-      I.click(this.fields.pqt2)
-      I.wait(5)
+      I.click(this.fields.servpqt);
+      I.click(this.fields.pqt2);
+      I.wait(2);
 
       I.executeScript(() => {
         document.querySelector('[id="selProdReq"]').scrollIntoView();
       });
-      I.switchTo()
+      I.switchTo();
     });
-    //pause()
-  within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
-      I.wait(3)
-      I.click(this.fields.btnoffer)
-      I.wait(5)
+
+    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.wait(3);
+      I.click(this.fields.btnoffer);
+      I.wait(5);
       I.closeOtherTabs(); //Oferta comercial
-      I.wait(2)
-      I.click(this.fields.rdbtnGI)
-      I.wait(1)
-      //I.click(this.fields.btndomiciliacion)
-      //I.wait(2)
-      I.click(this.fields.continuarpqt)
-      //I.wait(35)
+      I.wait(2);
+      I.click(this.fields.rdbtnGI);
+      I.wait(1);
+      //I.click(this.fields.btndomiciliacion) -- No borrar, si se requiere desactivar el check de Domiciliación
+      I.click(this.fields.continuarpqt);
     });
-  within({ frame: '[id="frameD"]' }, () => {
-    I.wait(3)
-    I.fillField(this.fields.apdom, this.fields.apaterno)
-    I.wait(1)
-    I.fillField(this.fields.amdom, this.fields.amaterno)
-    I.wait(1)
-    I.fillField(this.fields.nombredom, this.fields.nombre)
-    I.wait(1)
-    I.fillField(this.fields.celdom, this.fields.celular)
-    I.wait(1)
-    I.fillField(this.fields.maildom, this.fields.mail)
-    I.wait(1)
-    I.click(this.fields.aceptdom)
+    within({ frame: '[id="frameD"]' }, () => {
+      I.wait(5);
+      I.fillField(this.fields.apdom, this.fields.apaterno);
+      I.fillField(this.fields.amdom, this.fields.amaterno);
+      I.fillField(this.fields.nombredom, this.fields.nombre);
+      I.fillField(this.fields.celdom, this.fields.celular);
+      I.fillField(this.fields.maildom, this.fields.mail);
+      I.click(this.fields.aceptdom);
+      I.wait(5);
+    });
+  }
+  //Facturación: Cambio de CP
+  facturacion() {
+    I.wait(1);
+    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.switchTo('[id="catEstado"]');
+      I.wait(3);
+      I.fillField(this.fields.cpFact, this.fields.cp);
+      I.wait(2);
+      I.switchTo();
+    });
+
+    I.wait(2);
+    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.wait(2);
+      I.click(this.fields.btnContratar);
+      I.wait(110); //Tiempo para avanzar a la pantalla del PUV, aquí ya genera la OS
+      //I.wait(50)
+    });
+    I.wait(5);
+    I.click(this.fields.btnencuesta);
+    I.wait(65);
+    //I.waitForElement('//iframe[@name="kioskoA0"]',65)
+    //Entrar al frame PUV para iniciar la encuesta
+    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.wait(2);
+      I.switchTo('[id="ifrContrataPUV"]');
+      I.wait(10);
+      I.switchTo('[id="ifPantMCob"]');
+      I.click(this.fields.btneqcob);
+      I.wait(5);
+      I.switchTo();
+    });
+    //Ingresar al frame Cuestionario de Cobertura
+    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.wait(20);
+      I.switchTo('[id="ifrContrataPUV"]');
+      I.switchTo('[id="ifPantQuizz"]');
+      I.click(this.fields.btnmed);
+      I.click(this.fields.btnContEncuesta);
+      I.wait(5);
+      I.click(this.fields.btnsi);
+      I.click(this.fields.btnContEncuesta);
+      I.wait(4);
+      I.click(this.fields.btnContEncuesta);
+      I.wait(3);
+      I.click(this.fields.Btnfinencuesta);
+      I.wait(30);
+      I.switchTo();
+    });
+    //Ingresar al PUV y no seleccionar productos
+    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.wait(5);
+      I.switchTo('//iframe[@id="ifrContrataPUV"]');
+      I.wait(3);
+      I.click(this.fields.btnterminar);
+      I.wait(3);
+      I.click(this.fields.btnnoagregar);
+      I.wait(7);
+      //Seleccionar motivos
+      I.switchTo('//iframe[@id="frameEncuesta"]');
+      I.wait(3);
+      I.click(this.fields.mot1);
+      I.wait(1);
+      I.click(this.fields.btnContmov);
+      I.switchTo();
+      I.wait(5);
+    });
+    //Cierre de preguntas 
+    I.click(this.fields.btntelcerrar); //Telefonía
+    I.wait(4);
+    I.click(this.fields.btnteccerrar); //Tecnología
+    I.wait(8);
+  }
+//Pantalla antes de mostrar OS
+  adicionales() {
+    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+    I.wait(5)
+    I.switchTo('//iframe[@id="adicionales"]')
+    I.click(this.fields.btnadicsalir)
     I.wait(15)
-  });
-  
-}
+    I.switchTo()
+    });
+  }
 
-facturacion(){
-  pause()
-  I.wait(3)
-within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
-  I.switchTo('[id="catEstado"]')
-  I.wait(3)
-  I.fillField(this.fields.cpFact, this.fields.cp)
-  I.wait(2)
-  I.switchTo()
-  });/*
-within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
-  I.wait(2)
-  I.click(this.fields.btnContratar)
-  I.wait(20)
-  I.wait(20)
-  });*/
-
-}
+  generaos(){
+    //Msj GI Pago inicial
+    I.click(this.fields.giPi)
+    I.wait(1)
+    I.guardarTextoDesdeIframe()
+    I.wait(4)
+    }
 
 }
 module.exports = new AltaRes();

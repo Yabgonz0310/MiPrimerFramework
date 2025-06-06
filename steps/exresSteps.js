@@ -12,4 +12,9 @@ When("Selecciono Alta sin Portabilidad y capturo los datos", () => {
     AltaRes.datoscliente();
     AltaRes.oferta();
     AltaRes.facturacion();
+    AltaRes.adicionales();
+});
+
+Then("Se genera la OS de servicio", () => {
+    AltaRes.generaos();
 });
