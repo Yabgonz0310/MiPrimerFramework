@@ -1,19 +1,7 @@
 const { locator } = require("codeceptjs");
 
-
+const { llenarDatos } = require('../metodos/completarinfo');
 const { I, playwright } = inject();
-const osServicio = require('../pages/osServicio.js');
-module.exports = function () {
-  return actor({
-
-    async guardarTextoDesdeIframe() {
-      await osServicio.generaos(I);
-    }
-
-  });
-};
-
-
 class AltaRes {
   constructor() {
     this.fields = {
@@ -29,12 +17,12 @@ class AltaRes {
       infocontact:
         '//div[@class="dialog-popup-express-footer"]//button[@class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
       inputcel: '//div[@id="divCelular"]//input[@id="celular"]',
-      celular: 5570510577,
+      celular: 5570510579,
       confirmarcel: '//input[@id="celularConfirm"]',
       inputteladicional: '//td[@id="tdContacto"]//input[@id="telcontacto"]',
       teladic: 7122341281,
       inputcorreo: '(//input[@class="cajaTexto"])[6]',
-      alias: "luiz396",
+      alias: "luiz398",
       inputdominio: '//input[@name="comboDominio"]',
       domain: "gmail.com",
       confcorreo: '(//input[@class="cajaTexto"])[7]',
@@ -72,23 +60,24 @@ class AltaRes {
       cp: "01710", // Si el CP inicia con 0, se deja con comillas dobles, en caso contrario no se ocupan
       combocalle:
         '(//span[@class="ui-button-icon-primary ui-icon icon-triangle-express"])[6]',
-      tipocalle: '//input[@id="cboxcombotipocalle"]',
+      inputtpc: '//input[@id="cboxcombotipocalle"]',
       tpcalle: "CALLE",
       inputcalle: '//input[@id="idCalle"]',
       calle: "RIBERA",
-      numcalle: '//input[@id="idNumeroExterior"]',
-      numbercalle: 20,
+      inputnext: '//input[@id="idNumeroExterior"]',
+      numbercalle: '',
       inputcalif: '//input[@id="idCalificador"]',
-      calif: " ",
-      sbnumero: '//input[@id="idsubnumero"]',
-      subnumber: " ",
+      calif: "",
+      inputsn: '//input[@id="idsubnumero"]',
+      subnumber: '',
       inputmanzana: '//input[@id="idManzana"]',
-      manzana: " ",
+      manzana:'',
       inputlote: '//input[@id="idLote"]',
-      lote: " ",
+      lote: '',
       inputedif: '//input[@id="idEdificio"]',
+      edif:"",
       inputdept: '//input[@id="idDepartamento"]',
-      dep: " ",
+      dep: '',
       inpute1: '//input[@id="idEntreCalle1"]',
       e1: "CALZ DE LAS AGUILAS",
       inpute2: '//input[@id="idEntreCalle2"]',
@@ -115,7 +104,7 @@ class AltaRes {
       pqt5: '(//button[@id="botonContratar"])[5]', //PQI32 250 MBS
       pqt6: '(//button[@id="botonContratar"])[6]', //PQI64 350 MBS
       pqt7: '(//button[@id="botonContratar"])[7]', //PQI25 750 MBS
-      pqt8: '(//button[@id="botonContratar"])[8]', // PQI70 UNKNOWN MBS
+      pqt8: '(//button[@id="botonContratar"])[8]', //PQI70 UNKNOWN MBS
       pqt9: '(//button[@id="botonContratar"])[9]', //PQI62 1000 MBS - 1GB
       btns: '[id="divBotones"]',
       btnoffer: '//input[@id="Corrida"]',
@@ -210,7 +199,7 @@ class AltaRes {
 
   servicio() {
     I.click(this.fields.service);
-    I.wait(7);
+    I.wait(10);
   }
 
   datoscliente() {
@@ -333,14 +322,20 @@ class AltaRes {
       });
       //ingresar al 2do frame, donde se encuentran los campos
       I.switchTo('//iframe[@name="frameDos"]');
-      //I.wait(3);
-      //I.click(this.fields.combocalle);
-      I.wait(1);
-      I.fillField(this.fields.tipocalle, this.fields.tpcalle);
+      I.wait(3);
+      pause()
+      llenarDatos(I, this.fields.inputtpc, this.fields.tpcalle)
       I.pressKey("Enter");
-      I.fillField(this.fields.inputcalle, this.fields.calle);
-      I.fillField(this.fields.inpute1, this.fields.e1);
-      I.fillField(this.fields.inpute2, this.fields.e2);
+      llenarDatos(I, this.fields.inputcalle, this.fields.calle)
+      llenarDatos(I, this.fields.inputnext, this.fields.numbercalle)    
+      llenarDatos(I, this.fields.inputcalif, this.fields.calif)
+      llenarDatos(I, this.fields.inputsn, this.fields.subnumber)
+      llenarDatos(I, this.fields.inputmanzana, this.fields.manzana)
+      llenarDatos(I, this.fields.inputlote, this.fields.lote)
+      llenarDatos(I, this.fields.inputedif, this. fields.edif)
+      llenarDatos(I, this.fields.inputdept, this.fields.dep)
+      llenarDatos(I, this.fields.inpute1, this.fields.e1)
+      llenarDatos(I, this.fields.inpute2, this.fields.e2)
       I.wait(1);
       I.click(this.fields.confdom);
       I.wait(3);
@@ -492,11 +487,20 @@ class AltaRes {
     });
   }
 
-  generaos(){
+  async generaos(){
     //Msj GI Pago inicial
     I.click(this.fields.giPi)
-    I.wait(1)
-    I.guardarTextoDesdeIframe()
+    I.wait(15)
+    pause()
+    const { page } = await I.getContext();
+    const [ download ] = await Promise.all([
+      page.waitForEvent('download'),
+      page.waitForTimeout(3000),
+    ]);
+
+    const path = await download.path();
+    const suggestedFilename = download.suggestedFilename();
+    console.log('Archivo descargado: ${path} como ${suggestedFilename}')    
     I.wait(4)
     }
 
