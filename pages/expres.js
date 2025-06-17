@@ -17,12 +17,12 @@ class AltaRes {
       infocontact:
         '//div[@class="dialog-popup-express-footer"]//button[@class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
       inputcel: '//div[@id="divCelular"]//input[@id="celular"]',
-      celular: 5570510579,
+      celular: 5570510581,
       confirmarcel: '//input[@id="celularConfirm"]',
       inputteladicional: '//td[@id="tdContacto"]//input[@id="telcontacto"]',
       teladic: 7122341281,
       inputcorreo: '(//input[@class="cajaTexto"])[6]',
-      alias: "luiz398",
+      alias: "luiz400",
       inputdominio: '//input[@name="comboDominio"]',
       domain: "gmail.com",
       confcorreo: '(//input[@class="cajaTexto"])[7]',
@@ -31,11 +31,11 @@ class AltaRes {
       inputoficina: '//input[@id="CVE"]',
       oficina: "WFC",
       inputnombre: '//td[@id="tdtextnombre"]//input[@type="text"]',
-      nombre: "FRIDA SOFIA",
+      nombre: "FRIDA ARANZA",
       inputap: '//td[@id="tdtextapaterno"]//input[@type="text"]',
-      apaterno: "FAUSTO",
+      apaterno: "FRAUSTO",
       inputam: '//td[@id="tdtextamaterno"]//input[@type="text"]',
-      amaterno: "CCP",
+      amaterno: "CCPS",
       btnfc: '//input[@name="btnRFC"]',
       sinrfc: '//img[@title="Clic para rfc genérico"]',
       btnaceptrfc: '//input[@class="btncontinuar"]',
@@ -323,7 +323,7 @@ class AltaRes {
       //ingresar al 2do frame, donde se encuentran los campos
       I.switchTo('//iframe[@name="frameDos"]');
       I.wait(3);
-      pause()
+      //pause()
       llenarDatos(I, this.fields.inputtpc, this.fields.tpcalle)
       I.pressKey("Enter");
       llenarDatos(I, this.fields.inputcalle, this.fields.calle)
