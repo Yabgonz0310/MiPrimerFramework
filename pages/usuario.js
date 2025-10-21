@@ -40,7 +40,7 @@ class SearchUser {
         I.fillField(this.fields.inputFechaFin, this.fields.fechaFin)
         I.wait(1)
         I.click(this.fields.buttonbuscar)
-        I.scrollTo(this.fields.resultado)
+        I.scrollPageToBottom()
         I.wait(5)
 
 

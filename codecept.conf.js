@@ -37,7 +37,7 @@ exports.config = {
   gherkin: {
     features: "./features/*.feature",
     steps: ["./steps/loginSteps.js", "./steps/musicaSteps.js","./steps/mloginSteps.js","./steps/carsoSteps.js","./steps/walmartSteps.js","./steps/cineSteps.js",
-      "./steps/attSteps.js","./steps/aseoSteps.js","./steps/exresSteps.js","./steps/userSteps.js","./steps/crearuserSteps.js"],
+      "./steps/attSteps.js","./steps/aseoSteps.js","./steps/exresSteps.js","./steps/userSteps.js","./steps/crearuserSteps.js","./steps/segEmpTroncalSteps.js"],
       //,"./steps/mitelSteps.js"
   },
 
@@ -46,6 +46,9 @@ exports.config = {
       enabled: true,
       require: "allure-codeceptjs",
     },
+    screenshotOnFail: {
+      enabled: true
+    }
   },
   name: "FrameworkYGL",
 };

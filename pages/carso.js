@@ -7,7 +7,7 @@ class CarsoCursos {
       inputEmail: '//input[@placeholder="Escribe tu email"]',
       email: "gonzagay@globalhitss.com",
       inputPassword: '//input[@placeholder="Escribe tu contraseña"]',
-      password: "Lopez031",
+      password: "Lopez0310", //Es Lopez031
       logButton: '//span[text()=" Ingresar "]',
       buscar: '//p [text()="Selecciona el curso al que deseas ingresar:"]',
       element: '(//span[text()="Administración del tiempo"])[2]',

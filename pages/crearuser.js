@@ -1,4 +1,6 @@
 const { I } = inject();
+const xlsx = require('xlsx');
+const path = require('path');
 
 class CrearUsuario {
   constructor() {
@@ -14,18 +16,21 @@ class CrearUsuario {
 
       //Datos usuario
       inputname: '[id="inputNombreUsuario"]',
-      //nombre: "Juan Morales",
       inputusername: '[id="inputUsername"]',
-      //usuario: "morales1994",
       inputmail: '[id="inputCorreo"]',
-      //mail: "moju@globahitss.com",
       inputpass: '[id="inputPasswd"]',
-      //pass: "mor41e5#5",
-      inputperfil: "#selectPerfil", //'[id="selectPerfil"]'
-      //perfil: '59', //'//option[text()="SUPER ADMINISTRADOR PLT"]',
-      //perfil2: '59',//option[text()="pr_subordinado2"]',
+      inputperfil: "#selectPerfil", 
       btncancel: '[id="btn-cancel"]',
       btnadd: '//button[text()="Agregar"]',
+      //usuarioExiste: '[id="usuario.errors"]',
+      usuarioExiste: '//span[text()="El usuario ya existe."]',
+      //UsuarioOK
+      usuarioOK: '//div//p[text()="El usuario se ha creado exitosamente"]',
+
+      //Datos para la creación de usuarios desde Excel
+      contExcel: 1,
+      archivo: '../data/usuarios.xlsx',
+      hojaU: 'Hoja1',
     };
   }
 
@@ -38,26 +43,72 @@ class CrearUsuario {
     I.click(this.fields.btnlogin);
     I.wait(5);
   }
-
-   crearuser(nombre, usuario, correo, password, perfil) {
+  
+  seccionusuarios(){
     I.click(this.fields.btnusers);
     I.wait(1);
     I.click(this.fields.btncrear);
     I.wait(3);
-    
-    I.fillField(this.fields.inputname, nombre)
-    I.fillField(this.fields.inputusername, usuario)
-    I.fillField(this.fields.inputmail, correo)
-    I.fillField(this.fields.inputpass, password)
-    I.selectOption(this.fields.inputperfil, perfil.toString())
-    I.wait(1)
-    I.click(this.fields.btnadd)
-    I.wait(5)
-
   }
-  /*agregaruser(){
-    I.click(this.fields.btnadd)
-  }*/
+   async crearuser(nombre, usuario, correo, password, perfil) {
+    
+    const rutaUsuarios = path.join(__dirname, this.fields.archivo);
+    const libro = xlsx.readFile(rutaUsuarios);
+    const hoja = libro.Sheets[this.fields.hojaU];
+    const datos = xlsx.utils.sheet_to_json(libro.Sheets[this.fields.hojaU]);
 
+    //Agregar titulo de nueva columna
+    xlsx.utils.sheet_add_aoa(hoja, [['RESULTADO']], {origin: 'F'+this.fields.contExcel});
+
+    //Valida por cada registro del archivo
+    for (const dato of datos) {
+      this.fields.contExcel++
+      if (dato.nombre && dato.usuario && dato.correo && dato.password && dato.perfil) {
+       I.fillField(this.fields.inputname, dato.nombre);
+       I.fillField(this.fields.inputusername, dato.usuario);
+       I.fillField(this.fields.inputmail, dato.correo);
+       I.fillField(this.fields.inputpass, dato.password);
+       I.selectOption(this.fields.inputperfil, dato.perfil.toString())
+       I.wait(1);
+       I.click(this.fields.btnadd)
+       I.wait(5);
+
+       if (await I.seeElement(this.fields.usuarioOK)){
+          I.wait(5)
+          this.seccionusuarios();
+        }
+       else if (await I.seeElement(this.fields.usuarioExiste)){
+          //REGISTRO CON DATOS DE USUARIO EXISTENTE - Modificar campo
+          xlsx.utils.sheet_add_aoa(hoja, [['Usuario existente']], {origin: 'F'+this.fields.contExcel});
+        }
+      /*    
+      try {
+      await I.waitForElement(this.fields.usuarioOK, 6);
+      //await this.seccionusuarios();
+      }
+      catch {
+      try {
+      await I.waitForElement(this.fields.usuarioExiste, 5);
+      xlsx.utils.sheet_add_aoa(hoja, [['Usuario existente']], {origin: 'F'+this.fields.contExcel});
+      }
+      catch {
+        //await this.seccionusuarios();
+        
+      }
+      } */
+
+      //Aquí cierra el if inicial donde se evalua si los campos tienen valores
+      }
+      else {
+        //REGISTRO CON DATOS INCOMPLETOS - Modificar campo
+        xlsx.utils.sheet_add_aoa(hoja, [['Datos incompletos']], {origin: 'F'+this.fields.contExcel});
+      }
+      //Volver a ingresar al apartado para borrar etiqueta de error
+       this.seccionusuarios();
+    }
+    //Guardar cambios desdepues de pasar por todos los registros
+    xlsx.writeFile(libro, rutaUsuarios, { bookType: 'xlsx', type: 'file' })
+  }
+ 
 }
 module.exports = new CrearUsuario();

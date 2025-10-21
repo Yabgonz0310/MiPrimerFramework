@@ -6,23 +6,19 @@ class AltaRes {
   constructor() {
     this.fields = {
       inicioexp: "http://10.205.76.19/pisagrafico_os3/zntjsp/SVT2502MAIN.jsp",
-      frame: '//iframe[@name="kioskoA0"]',
-      sinporta: '//div[@id="divAltaSinPorta"]//input[@id="radioSinPorta"]',
-      service:
-        '//button[@class="dialog-popup-express-newElement dialog-popup-express-btn btn-border btn-sm "]',
-      regimen:
-        '(//a[@class="ui-widget ui-state-default ui-button-icon-only custom-combobox-toggle ui-corner-right"]//span[@class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"])[4]',
-      residencial:
-        '//select[@name="comboRegimen"]//option[@value="RESIDENCIAL"]',
-      infocontact:
-        '//div[@class="dialog-popup-express-footer"]//button[@class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
+      frame:'//iframe[@name="kioskoA0"]',
+      sinporta:'//div[@id="divAltaSinPorta"]//input[@id="radioSinPorta"]',
+      service:'//button[@class="dialog-popup-express-newElement dialog-popup-express-btn btn-border btn-sm "]',
+      regimen:'(//a[@class="ui-widget ui-state-default ui-button-icon-only custom-combobox-toggle ui-corner-right"]//span[@class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"])[4]',
+      residencial:'//select[@name="comboRegimen"]//option[@value="RESIDENCIAL"]',
+      infocontact:'//div[@class="dialog-popup-express-footer"]//button[@class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
       inputcel: '//div[@id="divCelular"]//input[@id="celular"]',
-      celular: 5570510581,
+      celular: 5570510618,
       confirmarcel: '//input[@id="celularConfirm"]',
       inputteladicional: '//td[@id="tdContacto"]//input[@id="telcontacto"]',
       teladic: 7122341281,
       inputcorreo: '(//input[@class="cajaTexto"])[6]',
-      alias: "luiz400",
+      alias: "luiz437",
       inputdominio: '//input[@name="comboDominio"]',
       domain: "gmail.com",
       confcorreo: '(//input[@class="cajaTexto"])[7]',
@@ -31,16 +27,15 @@ class AltaRes {
       inputoficina: '//input[@id="CVE"]',
       oficina: "WFC",
       inputnombre: '//td[@id="tdtextnombre"]//input[@type="text"]',
-      nombre: "FRIDA ARANZA",
+      nombre: "MITCHELL",
       inputap: '//td[@id="tdtextapaterno"]//input[@type="text"]',
-      apaterno: "FRAUSTO",
+      apaterno: "OSTRIA",
       inputam: '//td[@id="tdtextamaterno"]//input[@type="text"]',
       amaterno: "CCPS",
       btnfc: '//input[@name="btnRFC"]',
       sinrfc: '//img[@title="Clic para rfc genérico"]',
       btnaceptrfc: '//input[@class="btncontinuar"]',
-      comboident:
-        '(//a[@class="ui-widget ui-state-default ui-button-icon-only custom-combobox-toggle ui-corner-right"])[7]',
+      comboident:'(//a[@class="ui-widget ui-state-default ui-button-icon-only custom-combobox-toggle ui-corner-right"])[7]',
       msjcliente: '//div[@class="dialog-popup-express-head"]',
       comboine: "//html//body//main//div[3]//div//span//a//span[1]",
       inputine: '//div[@id="data1_1"]//input[@id="numId"]',
@@ -48,7 +43,7 @@ class AltaRes {
       validarine: '//button[@id="btnValidate"]',
       cerrarince: "https://listanominal.ine.mx/scpln/",
       buttonacept: '//button[@id="btnAccept"]',
-      //Dirección
+      //Dirección Geoplex
       inputaddress: '//input[@placeholder="Ingrese dirección..."]',
       direccion: "RIBERA 20, LOS ALPES",
       btnsearch: '//input[@class="sb-search-submit"]',
@@ -58,8 +53,7 @@ class AltaRes {
       col: "AMPLIACION  LOS ALPES", //No se ocupa de momento
       inputcp: '//input[@id="cboxCodigoPostal"]',
       cp: "01710", // Si el CP inicia con 0, se deja con comillas dobles, en caso contrario no se ocupan
-      combocalle:
-        '(//span[@class="ui-button-icon-primary ui-icon icon-triangle-express"])[6]',
+      combocalle:'(//span[@class="ui-button-icon-primary ui-icon icon-triangle-express"])[6]',
       inputtpc: '//input[@id="cboxcombotipocalle"]',
       tpcalle: "CALLE",
       inputcalle: '//input[@id="idCalle"]',
@@ -87,7 +81,7 @@ class AltaRes {
       dominst: '//div[@id="dialog-Mapa"]',
       domok: '(//button[@class="ui-button ui-corner-all ui-widget boton"])[2]',
       btncontrata: '//input[@id="btninfoydom"]',
-      //GI
+      //GI "Recuerda informar al cliente el cargo por concepto de Gastos de Instalación"
       btngi: '//td[@id="tdMsjGI"]',
       btncontinuar: '[name="Continuar"]',
       //Paquetes
@@ -95,26 +89,34 @@ class AltaRes {
       servpqt: '[id="chkServPqte"]', //DoblePlay
       servnaked: '[id="chkServNaked"]', //Naked
       servlin: '[id="chkServLinea"]', //Solo voz
-      pqt1: '(//button[@id="botonContratar"])[1]', //PQI53 15 MBS
-      pqt2: '(//button[@id="botonContratar"])[2]', //INF19 80 MBS
-      pqt3: '(//button[@id="botonContratar"])[3]', //PQI42 100 MBS
-      pqt4: '(//button[@id="botonContratar"])[4]', //PQI43 150 MBS
+      pqt1: '(//button[@id="botonContratar"])[1]', //PQI53 15 MBS     PFR26 30 MBS
+      pqt2: '(//button[@id="botonContratar"])[2]', //INF19 80 MBS     PFR39 80 MBS
+      pqt3: '(//button[@id="botonContratar"])[3]', //PQI42 100 MBS    PFR34 100 MBS
+      pqt4: '(//button[@id="botonContratar"])[4]', //PQI43 150 MBS    PFRA5 150 MBS
       btnsig: '//span[text()="Siguiente"]',
       btnant: '//span[text()="Anterior"]',
-      pqt5: '(//button[@id="botonContratar"])[5]', //PQI32 250 MBS
-      pqt6: '(//button[@id="botonContratar"])[6]', //PQI64 350 MBS
-      pqt7: '(//button[@id="botonContratar"])[7]', //PQI25 750 MBS
-      pqt8: '(//button[@id="botonContratar"])[8]', //PQI70 UNKNOWN MBS
-      pqt9: '(//button[@id="botonContratar"])[9]', //PQI62 1000 MBS - 1GB
+      pqt5: '(//button[@id="botonContratar"])[5]', //PQI32 250 MBS     PFRA7 250 MBS
+      pqt6: '(//button[@id="botonContratar"])[6]', //PQI64 350 MBS     PFR18 350 MBS
+      pqt7: '(//button[@id="botonContratar"])[7]', //PQI70 500 MBS     PFRA8 500 MBS
+      pqt8: '(//button[@id="botonContratar"])[8]', //PQI25 750 MBS     PFR56 750 MBS
+      pqt9: '(//button[@id="botonContratar"])[9]', //PQI62 1000 MBS    
       btns: '[id="divBotones"]',
       btnoffer: '//input[@id="Corrida"]',
-
+      //STREAMING
+      //HBO
+      checkHBO:'//input[@name="cmdHboMax_A"]',
+      comboHBO:'//select[@name="selPlanMax_A"]',
+      maxCA:'MAXCA',
+      btnVin:'//button[@id="btnAceptar"]',
+      //F1
+      checkF1:'//input[@id="chkFormula1_A"]',
+      //AMAZON
+      checkAmzn:'//input[@id="chkPrimeVideo_A"]',
       //Oferta comercial: se muestra ventana flotante con la velocidad del paquete seleccionado
       windowmolecula: '//iframe[@id="idIfrmMolecula"]',
       //GI Pago inicial y pago único
       rdbtnGI: '[id="radioGastosD"]', //radio btn GI
-      comboGI:
-        '(//span[@class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"])[4]',
+      comboGI: '(//span[@class="ui-button-icon-primary ui-icon ui-icon-triangle-1-s"])[4]',
       btndomiciliacion: '[id="chkDomiciliacion"]', //Desactivar check domiciliación
 
       //Campos Domiciliación
@@ -130,30 +132,34 @@ class AltaRes {
       //Facturación
       cpFact: '//td//input[@id="cpFact"]',
       btnContratar: '[id="btninfoydom"]',
-
-      //Catálogo Equipos de cobertura
-      btnencuesta:
-        '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
-      //PUV EQUIPOS MESH
+      
+      /*PUV MESH 
+      Catálogo Equipos de cobertura
+      Mesh Huawei es la solución ideal para mejorar la cobertura WiFi. Aplica la siguiente escuesta.*/ 
+      puvMesh:'NO',
+      meshclose: '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-border btn-md "]',
+      meshacept: '[class="dialog-popup-express-newElement dialog-popup-express-btn btn-md "]',
+      //PUV EQUIPOS MESH: si se acepta algún equipo de cobertura
       btneqcob: '[id="btEncuesta"]',
-      //PUV Encuesta Cobertura
-      btnch: '//label//input[@value="1"]',
-      btnmed: '//label//input[@value="2"]',
-      btngde: '//label//input[@value="3"]',
-      btnxl: '//label//input[@value="4"]',
+
+      //PUV Cuestionario de Cobertura
+      //Pregunta 1 ¿Cantidad de espacios en tu domicilio?
+      btn6esp: '//label//input[@value="Hasta 6 espacios"]',
+      btn9esp: '//label//input[@value="Hasta 9 espacios"]',
+      btnm9: '//label//input[@value="Mas de 9 espacios"]',
+      
       btnregresar: '//tr[@id="btnEncuestaS"]//input[@value="Regresar"]',
       btnContEncuesta: '//tr[@id="btnEncuestaS"]//input[@value="Continuar"]', // Se reutiliza en la pregunta 2
-      //Pregunta 2
-      btnsi: '//tr[@id="btnEncuesta"]//input[@value="1"]',
-      btnno: '//tr[@id="btnEncuesta"]//input[@value="2"]',
-      Btnfinencuesta: '//div[@id="divPregunta"]//button[@id="btnOK"]',
+      //Pregunta 2 ¿Cantidad de dispositivos que conectas en tu red?
+      h30: '//label//input[@value="Hasta 30"]',
+      h100: '//label//input[@value="Hasta 100"]',
+      h150: '//label//input[@value="Hasta 150"]',
+      artrecom: '//div[@class="container"]//div//input[@value="Aceptar"]',
 
       //PUV MESH debes entrar al KIOSKO/ifr_ContratPuv / y : '//iframe[@id="fmCat"]' para seleccionar productos de esta pantalla
       btnterminar: '[id="btnTerminar"]',
-      btnagregar:
-        '(//div[@class="ui-dialog-buttonset"]//span[@class="ui-button-text"])[1]', //¿Desea Agregar Algún Aparato Telefónico A La Orden? - Si
-      btnnoagregar:
-        '(//div[@class="ui-dialog-buttonset"]//span[@class="ui-button-text"])[2]', //No desea productos
+      btnagregar: '(//div[@class="ui-dialog-buttonset"]//span[@class="ui-button-text"])[1]', //¿Desea Agregar Algún Aparato Telefónico A La Orden? - Si
+      btnnoagregar: '(//div[@class="ui-dialog-buttonset"]//span[@class="ui-button-text"])[2]', //No desea productos
       //Motivos
       mot1: '(//td//input[@name="motivo"])[1]', // Precio elevado
       mot2: '(//td//input[@name="motivo"])[2]', // Presupuesto
@@ -164,6 +170,14 @@ class AltaRes {
       mot7: '(//td//input[@name="motivo"])[7]', //CLIENTE CON QUEJAS
       mot8: '(//td//input[@name="motivo"])[8]', //ESTÁ SATISFECHO CON SU PRODUCTO/SERVICIO ACTUAL
       mot9: '(//td//input[@name="motivo"])[9]', //EL CLIENTE NO CUMPLE CONDICIONES
+      mot10: '(//td//input[@name="motivo"])[10]', //Cte no pagara producto, considera que TMX debe proveer eqpo.
+      mot11:'(//td//input[@name="motivo"])[11]', //Cte menciona que ya cuenta con ese tipo de dispositivos.
+      mot12:'(//td//input[@name="motivo"])[12]', //El precio del producto le parece caro.
+      mot13:'(//td//input[@name="motivo"])[13]', //Cte sin línea de crédito.
+      mot14:'(//td//input[@name="motivo"])[14]', //Tiene que consultarlo con alguien más(no titular de linea).
+      mot15:'(//td//input[@name="motivo"])[15]', //No existe inventario disponible.
+      mot16:'(//td//input[@name="motivo"])[16]', //Solicitó cambio de módem.
+      mot17:'(//td//input[@name="motivo"])[17]', //Prefiere comprar el producto con otro proveedor.
       btncancelmov: '[id="btnCancelar"]',
       btnContmov: '//button[text()="Continuar"]',
       //Catálogo teléfonos
@@ -189,6 +203,7 @@ class AltaRes {
     await I.amOnPage(this.fields.inicioexp);
     await I.wait(10);
   }
+
 
   tipoalta() {
     within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
@@ -400,13 +415,15 @@ class AltaRes {
       I.fillField(this.fields.celdom, this.fields.celular);
       I.fillField(this.fields.maildom, this.fields.mail);
       I.click(this.fields.aceptdom);
-      I.wait(5);
+      I.wait(10);
+      
     });
   }
+  
   //Facturación: Cambio de CP
   facturacion() {
     I.wait(1);
-    within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
       I.switchTo('[id="catEstado"]');
       I.wait(3);
       I.fillField(this.fields.cpFact, this.fields.cp);
@@ -422,10 +439,10 @@ class AltaRes {
       //I.wait(50)
     });
     I.wait(5);
-    I.click(this.fields.btnencuesta);
+    if (this.fields.puvMesh == 'SI'){
+    I.click(this.fields.meshacept);
     I.wait(65);
-    //I.waitForElement('//iframe[@name="kioskoA0"]',65)
-    //Entrar al frame PUV para iniciar la encuesta
+    //Ingresa al frame PUV para iniciar la encuesta
     within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
       I.wait(2);
       I.switchTo('[id="ifrContrataPUV"]');
@@ -440,18 +457,23 @@ class AltaRes {
       I.wait(20);
       I.switchTo('[id="ifrContrataPUV"]');
       I.switchTo('[id="ifPantQuizz"]');
-      I.click(this.fields.btnmed);
+      I.click(this.fields.btn9esp);
       I.click(this.fields.btnContEncuesta);
       I.wait(5);
-      I.click(this.fields.btnsi);
+      I.click(this.fields.h30);
       I.click(this.fields.btnContEncuesta);
-      I.wait(4);
-      I.click(this.fields.btnContEncuesta);
-      I.wait(3);
-      I.click(this.fields.Btnfinencuesta);
       I.wait(30);
       I.switchTo();
     });
+    //Artículos recomendados
+within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
+      I.switchTo('[id="ifrContrataPUV"]');
+      I.switchTo('[id="ifPantEvalQuizz"]');
+      I.click(this.fields.artrecom);
+      I.wait(30);
+      I.switchTo();
+});
+
     //Ingresar al PUV y no seleccionar productos
     within({ frame: '//iframe[@name="kioskoA0"]' }, () => {
       I.wait(5);
@@ -470,6 +492,10 @@ class AltaRes {
       I.switchTo();
       I.wait(5);
     });
+  }
+  else {
+    I.click(this.fields.meshclose);
+  }
     //Cierre de preguntas 
     I.click(this.fields.btntelcerrar); //Telefonía
     I.wait(4);

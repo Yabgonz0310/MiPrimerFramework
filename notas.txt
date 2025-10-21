@@ -1,0 +1,15 @@
+1.- Instalar codeceptjs y Playwright
+npm install codeceptjs playwright --save-dev
+npx playwright install
+
+2.- Instalar codeceptjs
+npx codeceptjs init
+npm init -y
+
+3.-Crear primer feature
+Crear carpeta features
+Crear primer feature con extensión .feature
+
+Comando para ejecutar pruebas de codeceptjs
+
+npx codeceptjs run features/expres.feature --steps --verbose --debug
